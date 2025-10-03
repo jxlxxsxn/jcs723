@@ -3,12 +3,40 @@
 <head>
   <meta charset="utf-8">
   <title>Julia Sun</title>
-
-  <link href="recipies.css" rel="stylesheet" type="text/css">"
-
+  <style>
+    body {
+      font-family: -apple-system, system-ui, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;   /* centers horizontally */
+      justify-content: center; /* centers vertically */
+      height: 100vh;          /* take full screen height */
+      margin: 0;
+      text-align: center;
+    }
+    nav {
+      margin-top: 20px;
+    }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #007acc;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
   <h1>Hello World 👋</h1>
   <p>This is my very first page on GitHub Pages.</p>
+
+  <!-- Simple navigation links -->
+  <nav>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 </body>
 </html>
