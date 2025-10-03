@@ -1,175 +1,275 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <title>Julia Sun</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
 <style>
-body, html {
-  height: 100%;
-  font-family: "Inconsolata", sans-serif;
-}
+  :root{
+    --black:#3F2A18;
+    --white:#E09E4F;
+    --light-grey:#f1f1f1;
+    --dark-grey:#616161;
+    /*--sand:#fdf5e6;*/
+    --text:#222;
+    --shadow:0 2px 6px rgba(0,0,0,.2);
+  }
 
-.bgimg {
-  background-position: center;
-  background-size: cover;
-  background-image: url("images/penguins.PNG");
-  min-height: 75%;
-}
+  /* Base */
+  html, body { height:100%; margin:0; }
+  body {
+    font-family: "Inconsolata", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+    color:var(--text);
+    line-height:1.5;
+    background:#3E5D53;
+  }
+  img { max-width:100%; height:auto; display:block; }
+  a { color:inherit; text-decoration:none; }
+  h1,h2,h3,h4,h5,h6 { margin:0 0 .6rem; font-weight:600; }
 
-.menu {
-  display: none;
-}
+  /* Utility */
+  .container { padding:0.01em 16px; }
+  .content { max-width:700px; margin:0 auto; }
+  .center { text-align:center; }
+  .padding { padding:8px 16px; }
+  .padding-lg { padding:12px 24px; }
+  .margin-top { margin-top:16px; }
+  .margin-top-lg { margin-top:32px; }
+  .tag {
+    display:inline-block;
+    background:var(--black);
+    color:var(--white);
+    padding:6px 12px;
+    letter-spacing:3px;
+    font-size:.85rem;
+  }
+  .leftbar {
+    border-left:6px solid #ccc;
+    background:var(--light-grey);
+    padding:8px 16px;
+  }
+  .light-grey { background:var(--light-grey); }
+  .sand { background:var(--sand); }
+  .large { font-size:18px; }
+  .text-white { color:var(--white); }
+  .hide-small { display:block; }
+  .image { width:100%; height:auto; }
+  .card { box-shadow:var(--shadow); border-radius:6px; background:#fff; }
+
+  @media (max-width:600px){
+    .hide-small { display:none; }
+  }
+
+  /* Top navigation */
+  .top {
+    position:fixed; top:0; left:0; right:0; z-index:10;
+    background:var(--black);
+  }
+  .top .row { display:flex; gap:0; }
+  .col-3 { width:25%; }
+  .btn {
+    display:block; width:100%;
+    background:var(--black); color:var(--white);
+    padding:12px 0; text-align:center;
+    transition:filter .15s ease;
+  }
+  .btn:hover { filter:brightness(1.2); }
+
+  /* Header with background image */
+  .bgimg {
+    position:relative;
+    background-position:center;
+    background-size:cover;
+    background-image:url("images/penguins.PNG");
+    min-height:75vh;
+  }
+  .display { position:relative; }
+  .pos-bottom-left,
+  .pos-bottom-right,
+  .pos-middle {
+    position:absolute; transform:translate(-50%,-50%);
+  }
+  .pos-bottom-left   { left:0; bottom:0; transform:none; }
+  .pos-bottom-right  { right:0; bottom:0; transform:none; }
+  .pos-middle        { left:50%; top:50%; }
+  .pill { background:var(--black); color:var(--white); padding:8px 12px; display:inline-block; border-radius:4px; }
+  .headline { font-size:90px; line-height:.95; text-shadow:0 2px 8px rgba(0,0,0,.35); }
+
+  @media (max-width:600px){
+    .headline { font-size:56px; }
+    .btn { padding:10px 0; }
+  }
+
+  /* Tabs */
+  .tabs { display:flex; }
+  .tablink {
+    flex:1; padding:12px 0; text-align:center; cursor:pointer; user-select:none;
+    background:#eee; transition:background .15s ease;
+  }
+  .tablink:hover { background:#e2e2e2; }
+  .tablink.active { background:var(--dark-grey); color:var(--white); }
+  .menu { display:none; }
+  .menu.show { display:block; }
+
+  /* Footer */
+  footer { text-align:center; background:var(--light-grey); padding:48px 8px; font-size:large; }
+
+  /* Helpers to replicate spacing classes that appeared in W3 */
+  .pad-48 { padding:48px 0; }
+  .pad-64 { padding:64px 0; }
 </style>
 </head>
 <body>
 
 <!-- Links (sit on top) -->
-<div class="w3-top">
-  <div class="w3-row w3-padding w3-black">
-    <div class="w3-col s3">
-      <a href="#" class="w3-button w3-block w3-black">HOME</a>
+<div class="top">
+  <div class="row padding">
+    <div class="col-3">
+      <a href="#" class="btn">HOME</a>
     </div>
-    <div class="w3-col s3">
-      <a href="#about" class="w3-button w3-block w3-black">ABOUT</a>
+    <div class="col-3">
+      <a href="#about" class="btn">ABOUT</a>
     </div>
-    <div class="w3-col s3">
-      <a href="#menu" class="w3-button w3-block w3-black">MENU</a>
+    <div class="col-3">
+      <a href="#menu" class="btn">MENU</a>
     </div>
-    <div class="w3-col s3">
-      <a href="#where" class="w3-button w3-block w3-black">WHERE</a>
+    <div class="col-3">
+      <a href="#where" class="btn">WHERE</a>
     </div>
   </div>
 </div>
 
-<!-- Header with image -->
-<header class="bgimg w3-display-container w3-grayscale-min" id="home">
-  <div class="w3-display-bottomleft w3-center w3-padding-large w3-hide-small">
-    <span class="w3-tag">Open from 6am to 5pm</span>
+<!-- Header Image -->
+<header class="bgimg display" id="home">
+  <div class="pos-bottom-left center padding-lg hide-small">
+    <span class="pill">Open from 6am to 5pm</span>
   </div>
-  <div class="w3-display-middle w3-center">
-    <span class="w3-text-white" style="font-size:90px">the<br>Cafe</span>
+  <div class="pos-middle center">
+    <span class="text-white headline">Food for<br>Thought</span>
   </div>
-  <div class="w3-display-bottomright w3-center w3-padding-large">
-    <span class="w3-text-white">15 Adr street, 5015</span>
+  <div class="pos-bottom-right center padding-lg">
+    <span class="text-white">15 Adr street, 5015</span>
   </div>
 </header>
 
 <!-- Add a background color and large text to the whole page -->
-<div class="w3-sand w3-grayscale w3-large">
+<div class="sand large" style="filter:grayscale(75%);">
 
-<!-- About Container -->
-<div class="w3-container" id="about">
-  <div class="w3-content" style="max-width:700px">
-    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">ABOUT THE CAFE</span></h5>
-    <p>The Cafe was founded in blabla by Mr. Smith in lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    <p>In addition to our full espresso and brew bar menu, we serve fresh made-to-order breakfast and lunch sandwiches, as well as a selection of sides and salads and other good stuff.</p>
-    <div class="w3-panel w3-leftbar w3-light-grey">
-      <p><i>"Use products from nature for what it's worth - but never too early, nor too late." Fresh is the new sweet.</i></p>
-      <p>Chef, Coffeeist and Owner: Liam Brown</p>
+  <!-- About Container -->
+  <div class="container" id="about">
+    <div class="content">
+      <h5 class="center pad-64"><span class="tag">ABOUT THIS PAGE</span></h5>
+      <p>The Cafe was founded in blabla by Mr. Smith in lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>In addition to our full espresso and brew bar menu, we serve fresh made-to-order breakfast and lunch sandwiches, as well as a selection of sides and salads and other good stuff.</p>
+      <div class="leftbar">
+        <p><i>"Use products from nature for what it's worth - but never too early, nor too late." Fresh is the new sweet.</i></p>
+        <p>Chef, Coffeeist and Owner: Liam Brown</p>
+      </div>
+      <img src="/w3images/coffeeshop.jpg" style="width:100%;max-width:1000px" class="margin-top" alt="Coffee shop" />
+      <p><strong>Opening hours:</strong> everyday from 6am to 5pm.</p>
+      <p><strong>Address:</strong> 15 Adr street, 5015, NY</p>
     </div>
-    <img src="/w3images/coffeeshop.jpg" style="width:100%;max-width:1000px" class="w3-margin-top">
-    <p><strong>Opening hours:</strong> everyday from 6am to 5pm.</p>
-    <p><strong>Address:</strong> 15 Adr street, 5015, NY</p>
   </div>
-</div>
 
-<!-- Menu Container -->
-<div class="w3-container" id="menu">
-  <div class="w3-content" style="max-width:700px">
- 
-    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">THE MENU</span></h5>
-  
-    <div class="w3-row w3-center w3-card w3-padding">
-      <a href="javascript:void(0)" onclick="openMenu(event, 'Eat');" id="myLink">
-        <div class="w3-col s6 tablink">Eat</div>
-      </a>
-      <a href="javascript:void(0)" onclick="openMenu(event, 'Drinks');">
-        <div class="w3-col s6 tablink">Drink</div>
-      </a>
+  <!-- Menu Container -->
+  <div class="container" id="menu">
+    <div class="content">
+
+      <h5 class="center pad-48"><span class="tag">THE MENU</span></h5>
+
+      <div class="row center card padding">
+        <a href="javascript:void(0)" onclick="openMenu(event, 'Eat');" id="myLink" style="flex:1;">
+          <div class="tablink">Eat</div>
+        </a>
+        <a href="javascript:void(0)" onclick="openMenu(event, 'Drinks');" style="flex:1;">
+          <div class="tablink">Drink</div>
+        </a>
+      </div>
+
+      <div id="Eat" class="menu container padding-lg card">
+        <h5>Bread Basket</h5>
+        <p style="color:#757575">Assortment of fresh baked fruit breads and muffins 5.50</p><br>
+
+        <h5>Honey Almond Granola with Fruits</h5>
+        <p style="color:#757575">Natural cereal of honey toasted oats, raisins, almonds and dates 7.00</p><br>
+
+        <h5>Belgian Waffle</h5>
+        <p style="color:#757575">Vanilla flavored batter with malted flour 7.50</p><br>
+
+        <h5>Scrambled eggs</h5>
+        <p style="color:#757575">Scrambled eggs, roasted red pepper and garlic, with green onions 7.50</p><br>
+
+        <h5>Blueberry Pancakes</h5>
+        <p style="color:#757575">With syrup, butter and lots of berries 8.50</p>
+      </div>
+
+      <div id="Drinks" class="menu container padding-lg card">
+        <h5>Coffee</h5>
+        <p style="color:#757575">Regular coffee 2.50</p><br>
+
+        <h5>Chocolato</h5>
+        <p style="color:#757575">Chocolate espresso with milk 4.50</p><br>
+
+        <h5>Corretto</h5>
+        <p style="color:#757575">Whiskey and coffee 5.00</p><br>
+
+        <h5>Iced tea</h5>
+        <p style="color:#757575">Hot tea, except not hot 3.00</p><br>
+
+        <h5>Soda</h5>
+        <p style="color:#757575">Coke, Sprite, Fanta, etc. 2.50</p>
+      </div>
+
+      <img src="/w3images/coffeehouse2.jpg" style="width:100%;max-width:1000px;margin-top:32px;" alt="Coffeehouse" />
     </div>
+  </div>
 
-    <div id="Eat" class="w3-container menu w3-padding-48 w3-card">
-      <h5>Bread Basket</h5>
-      <p class="w3-text-grey">Assortment of fresh baked fruit breads and muffins 5.50</p><br>
-    
-      <h5>Honey Almond Granola with Fruits</h5>
-      <p class="w3-text-grey">Natural cereal of honey toasted oats, raisins, almonds and dates 7.00</p><br>
-    
-      <h5>Belgian Waffle</h5>
-      <p class="w3-text-grey">Vanilla flavored batter with malted flour 7.50</p><br>
-    
-      <h5>Scrambled eggs</h5>
-      <p class="w3-text-grey">Scrambled eggs, roasted red pepper and garlic, with green onions 7.50</p><br>
-    
-      <h5>Blueberry Pancakes</h5>
-      <p class="w3-text-grey">With syrup, butter and lots of berries 8.50</p>
+  <!-- Contact/Area Container -->
+  <div class="container" id="where" style="padding-bottom:32px;">
+    <div class="content">
+      <h5 class="center pad-48"><span class="tag">WHERE TO FIND US</span></h5>
+      <p>Find us at some address at some place.</p>
+      <img src="/w3images/map.jpg" class="image" alt="Map" />
+      <p><span class="tag" style="background:#ffeb3b; color:#000; letter-spacing:0; padding:2px 8px;">FYI!</span> We offer full-service catering for any event, large or small. We understand your needs and we will cater the food to satisfy the biggerst criteria of them all, both look and taste.</p>
+      <p><strong>Reserve</strong> a table, ask for today's special or just send us a message:</p>
+      <form action="/action_page.php" target="_blank">
+        <p><input class="input" style="width:100%; padding:16px; border:1px solid #ccc; border-radius:4px;" type="text" placeholder="Name" required name="Name"></p>
+        <p><input class="input" style="width:100%; padding:16px; border:1px solid #ccc; border-radius:4px;" type="number" placeholder="How many people" required name="People"></p>
+        <p><input class="input" style="width:100%; padding:16px; border:1px solid #ccc; border-radius:4px;" type="datetime-local" placeholder="Date and time" required name="date" value="2020-11-16T20:00"></p>
+        <p><input class="input" style="width:100%; padding:16px; border:1px solid #ccc; border-radius:4px;" type="text" placeholder="Message \ Special requirements" required name="Message"></p>
+        <p><button style="background:var(--black); color:var(--white); border:0; padding:12px 24px; border-radius:4px; cursor:pointer;">SEND MESSAGE</button></p>
+      </form>
     </div>
-
-    <div id="Drinks" class="w3-container menu w3-padding-48 w3-card">
-      <h5>Coffee</h5>
-      <p class="w3-text-grey">Regular coffee 2.50</p><br>
-    
-      <h5>Chocolato</h5>
-      <p class="w3-text-grey">Chocolate espresso with milk 4.50</p><br>
-    
-      <h5>Corretto</h5>
-      <p class="w3-text-grey">Whiskey and coffee 5.00</p><br>
-    
-      <h5>Iced tea</h5>
-      <p class="w3-text-grey">Hot tea, except not hot 3.00</p><br>
-    
-      <h5>Soda</h5>
-      <p class="w3-text-grey">Coke, Sprite, Fanta, etc. 2.50</p>
-    </div>  
-    <img src="/w3images/coffeehouse2.jpg" style="width:100%;max-width:1000px;margin-top:32px;">
   </div>
-</div>
-
-<!-- Contact/Area Container -->
-<div class="w3-container" id="where" style="padding-bottom:32px;">
-  <div class="w3-content" style="max-width:700px">
-    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">WHERE TO FIND US</span></h5>
-    <p>Find us at some address at some place.</p>
-    <img src="/w3images/map.jpg" class="w3-image" style="width:100%">
-    <p><span class="w3-tag">FYI!</span> We offer full-service catering for any event, large or small. We understand your needs and we will cater the food to satisfy the biggerst criteria of them all, both look and taste.</p>
-    <p><strong>Reserve</strong> a table, ask for today's special or just send us a message:</p>
-    <form action="/action_page.php" target="_blank">
-      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="Name"></p>
-      <p><input class="w3-input w3-padding-16 w3-border" type="number" placeholder="How many people" required name="People"></p>
-      <p><input class="w3-input w3-padding-16 w3-border" type="datetime-local" placeholder="Date and time" required name="date" value="2020-11-16T20:00"></p>
-      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message \ Special requirements" required name="Message"></p>
-      <p><button class="w3-button w3-black" type="submit">SEND MESSAGE</button></p>
-    </form>
-  </div>
-</div>
 
 <!-- End page content -->
 </div>
 
 <!-- Footer -->
-<footer class="w3-center w3-light-grey w3-padding-48 w3-large">
-  <p>Created by jcs723 </p>
+<footer>
+  <p>Powered by <span style="font-weight:600;">your own CSS</span></p>
 </footer>
 
 <script>
-// Tabbed Menu
-function openMenu(evt, menuName) {
-  var i, x, tablinks;
-  x = document.getElementsByClassName("menu");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
+  // Tabbed Menu
+  function openMenu(evt, menuName) {
+    var i, x, tablinks;
+    x = document.getElementsByClassName("menu");
+    for (i = 0; i < x.length; i++) {
+      x[i].classList.remove("show");
+    }
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].classList.remove("active");
+    }
+    document.getElementById(menuName).classList.add("show");
+    // evt.currentTarget may be the <a> or its child <div>; ensure we mark the tab <div>
+    var tab = evt.currentTarget.querySelector('.tablink') || evt.currentTarget;
+    tab.classList.add("active");
   }
-  tablinks = document.getElementsByClassName("tablink");
-  for (i = 0; i < x.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" w3-dark-grey", "");
-  }
-  document.getElementById(menuName).style.display = "block";
-  evt.currentTarget.firstElementChild.className += " w3-dark-grey";
-}
-document.getElementById("myLink").click();
+  // Initialize default tab
+  document.getElementById("myLink").click();
 </script>
 
 </body>
